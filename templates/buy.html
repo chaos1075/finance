@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Buy
+{% endblock %}
+
+{% block main %}
+    <form action="/buy" method="post">
+    <div class="form-group">
+        <input autocomplete="off" autofocus class="form-control" id="symbol" name="symbol" placeholder="Symbol" type="text">
+    </div>
+    <div class="form-group">
+        <input autocomplete="off" class="form-control" min="1" name="shares" placeholder="Shares" type="number">
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+    <script>
+        function getItem() {
+            return sessionStorage.getItem('symbol');
+        }
+        function remItem() {
+            sessionStorage.removeItem('symbol');
+        }
+        let sym = getItem();
+        // alert(sym);
+        document.querySelector('#symbol').value = sym;
+        remItem();
+    </script>
+{% endblock %}

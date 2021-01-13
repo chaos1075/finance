@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+    <script>
+        function setItem(x) {
+            sessionStorage.setItem('symbol', x);
+        }
+    </script>
+    <div id="notice" class="alert alert-primary" role="alert">
+        Welcome back! Here is your portfolio summary.
+    </div>
+    <!--<div class="table-responsive-sm">-->
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>Total</th>
+                <th>Sell</th>
+                <th>Buy</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <td colspan="4"></td>
+                <td class="font-weight-bold">{{ totalValue }}</td>
+            </tr>
+        </tfoot>
+        <tbody>
+            {% for stock in portfolio %}
+                <tr>
+                    <td>{{ stock['symbol'] }}</td>
+                    <td>{{ stock['company'] }}</td>
+                    <td>{{ stock['SUM(shares)'] }}</td>
+                    <td>{{ stock['price'] }}</td>
+                    <td>{{ stock['total'] }}</td>
+                    <td>
+                        <form action="/sell" method="get">
+                        <button class="btn btn-danger" type="submit" onclick="setItem({{ loop.index }})">Sell</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="/buy" method="get">
+                        <button class="btn btn-primary" type="submit" onclick="setItem('{{ stock['symbol'] }}')">Buy</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td>CASH</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{ cash }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <!--</div>-->
+{% endblock %}

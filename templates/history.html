@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <div id="notice" class="alert alert-primary" role="alert">
+        Here is your transaction history.
+    </div>
+    <div class="table-responsive-sm">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Symbol</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Shares</th>
+                    <th scope="col">Date&Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for t in trans %}
+                    <tr>
+                        <td>{{ t['symbol'] }}</td>
+                        <td>{{ t['company'] }}</td>
+                        <td>{{ t['price_usd'] }}</td>
+                        <td>{{ t['shares'] }}</td>
+                        <td>{{ t['datetime'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

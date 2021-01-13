@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sold
+{% endblock %}
+
+{% block main %}
+    <div id="notice" class="alert alert-primary" role="alert">
+        Thank you for your order!!!
+    </div>
+    <div class="table-responsive-sm">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Symbol</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Shares</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Total</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <td colspan="4"></td>
+                    <td class="font-weight-bold">{{ trans['cashremain'] }}</td>
+                </tr>
+            </tfoot>
+            <tbody>
+                <tr>
+                    <td>{{ trans['symbol'] }}</td>
+                    <td>{{ trans['name'] }}</td>
+                    <td>{{ trans['shares'] }}</td>
+                    <td>{{ trans['price_usd'] }}</td>
+                    <td>{{ trans['total_usd']}}</td>
+                </tr>
+                <tr>
+                    <td>CASH</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>{{ trans['cashfwd'] }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
